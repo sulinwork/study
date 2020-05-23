@@ -41,6 +41,7 @@ public class JwtTokenAuthenticationFilter extends OncePerRequestFilter {
             UsernamePasswordAuthenticationToken authentication =
                     new UsernamePasswordAuthenticationToken("admin", null, AuthorityUtils.commaSeparatedStringToAuthorityList("ROLE_admin"));
             SecurityContextHolder.getContext().setAuthentication(authentication);
+
         } else if (token.equals("user")) {
 
             UsernamePasswordAuthenticationToken authentication =
@@ -58,4 +59,5 @@ public class JwtTokenAuthenticationFilter extends OncePerRequestFilter {
         }
         filterChain.doFilter(request, response);
     }
+
 }
