@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <context id="mysql" defaultModelType="flat" targetRuntime="MyBatis3Simple" >
+        <property name="javaFileEncoding" value="UTF-8"/>
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+        <property name="mergeable" value="false"/>
+        <property name="javaFormatter" value="org.mybatis.generator.api.dom.DefaultJavaFormatter"/>
+        <property name="xmlFormatter" value="org.mybatis.generator.api.dom.DefaultXmlFormatter"/>
+
+        <plugin type="com.github.wxiaoqi.security.common.plugin.MyMapperPlugin">
+            <property name="mappers" value="tk.mybatis.mapper.common.Mapper"/>
+        </plugin>
+
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://devbox.local:3306/ga_shop_private?useUnicode=true&amp;characterEncoding=UTF8&amp;useSSL=false"
+                        userId="root"
+                        password="123456"/>
+
+        <!-- java类型处理器
+        -->
+        <javaTypeResolver type="com.github.wxiaoqi.security.common.plugin.MyJavaTypeResolverDefault"/>
+
+        <javaModelGenerator targetPackage="com.mbcloud.ga.mall.entity" targetProject="src/main/java"/>
+
+        <sqlMapGenerator targetPackage="mapper-mall"
+                         targetProject="src/main/resources"/>
+
+        <javaClientGenerator targetPackage="com.mbcloud.ga.mall.mapper" targetProject="src/main/java"
+                             type="XMLMAPPER"/>
+        <table tableName=""/>
+
+    </context>
+
+</generatorConfiguration>

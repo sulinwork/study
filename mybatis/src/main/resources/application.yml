@@ -1,0 +1,11 @@
+spring:
+  datasource:
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://${MYSQL_HOST}:3306/DemoDb?useUnicode=true&characterEncoding=UTF8&useSSL=false
+
+#mybatis:
+#  type-handlers-package: com.sulin.mybatis.typehandler
+
+

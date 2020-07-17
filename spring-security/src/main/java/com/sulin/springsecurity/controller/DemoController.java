@@ -35,6 +35,8 @@ public class DemoController {
         return Api.builder().code(401).message("哟啊死").build();
     }
 
+
+    @PreAuthorize("hasRole('admin')")
     @PostMapping("/save")
     public String save(HttpServletRequest request) {
         final String name = request.getParameter("name");

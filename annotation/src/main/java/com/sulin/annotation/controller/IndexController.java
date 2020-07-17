@@ -5,15 +5,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.core.annotation.AnnotatedElementUtils;
 import org.springframework.core.annotation.AnnotationUtils;
+import org.springframework.core.type.StandardAnnotationMetadata;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.lang.annotation.Annotation;
+import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
+import java.lang.reflect.Proxy;
 import java.util.Set;
 
 
-@RestController
+@RestController("sdasd")
 public class IndexController {
 
     @Autowired
@@ -32,6 +36,31 @@ public class IndexController {
         System.out.println("aaaa");
     }
 
+
+    public static void main(String[] args) {
+        Class<IndexController> indexControllerClass = IndexController.class;
+
+
+//        //InvocationHandler
+//
+//     AnnotatedElementUtils.findMergedAnnotation(indexControllerClass, Controller.class);
+
+        Annotation[] annotations = indexControllerClass.getAnnotations();
+        for (Annotation annotation : annotations) {
+
+            InvocationHandler invocationHandler = Proxy.getInvocationHandler(annotation);
+
+
+//            StandardAnnotationMetadata standardAnnotationMetadata = new StandardAnnotationMetadata(indexControllerClass);
+
+            Class<? extends Annotation> aClass = annotation.annotationType();
+            Object[] signers = aClass.getSigners();
+            Method[] declaredMethods = aClass.getDeclaredMethods();
+            for (Method declaredMethod : declaredMethods) {
+                System.out.println(declaredMethod.getName());
+            }
+        }
+    }
 
     @GetMapping
     @InstanceMethod("dasdas")

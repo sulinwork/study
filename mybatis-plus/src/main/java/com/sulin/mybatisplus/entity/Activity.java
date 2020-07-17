@@ -1,6 +1,7 @@
 package com.sulin.mybatisplus.entity;
 
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 import java.lang.annotation.Target;
 
